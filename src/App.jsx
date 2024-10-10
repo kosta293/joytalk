@@ -1,9 +1,6 @@
 import React from "react";
 import { Route, Routes, Link } from "react-router-dom";
-import { IPhoneLayout } from "react-iphone-layout";
 
-
-import "./css/App.css";
 import Iphone from "./components/Iphone";
 import LogIn from "./router/LogIn";
 import Home from "./router/Home";

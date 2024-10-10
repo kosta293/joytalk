@@ -16,6 +16,7 @@
     "babel-runtime": "^6.26.0",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
+    "mui": "^0.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",

@@ -10,11 +10,12 @@ body {
 .phone {
   width: 530px;
   height: 930px;
-  border: 16px solid #000000;
-  border-radius: 36px;
+  border: 20px solid #000000;
+  border-radius: 62px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
 .content {
