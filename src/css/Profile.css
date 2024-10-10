@@ -1,0 +1,40 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.profile-icon {
+  width: 200px;
+  height: 200px;
+  background-image: url("../images/profile.png");
+  border-radius: 50%;
+  background-color: #ffffff;
+  background-size: cover;
+  margin-bottom: 250px;
+  cursor: pointer;
+}
+
+.nickname-input {
+  width: 300px;
+  padding: 20px;
+  margin-bottom: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-button {
+  padding: 20px 40px;
+  background-color: #1f93ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #1f93ff;
+}

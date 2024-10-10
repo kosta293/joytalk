@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.phone {
+  width: 530px;
+  height: 930px;
+  border: 16px solid #000000;
+  border-radius: 36px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}

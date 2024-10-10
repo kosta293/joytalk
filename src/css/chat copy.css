@@ -1,0 +1,24 @@
+
+.chat {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  height: auto;
+  
+  max-height: 90%;
+  width: 10%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+  background-color: #409eff;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.5em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
