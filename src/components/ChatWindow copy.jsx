@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
-import socket from "../socket";
-import "./ChatWindow.css";
+import "./ChatWindow copy.css";
 
-const ChatWindow = ({ selectedUser, userId }) => {
+const ChatWindowCopy = ({ selectedUser, userId }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  let socket;
 
   useEffect(() => {
+    socket = new WebSocket("ws://localhost:8079");
+
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setMessages((prevMessages) => [...prevMessages, data]);
+      try {
+        const data = JSON.parse(event.data);
+        setMessages((prevMessages) => [...prevMessages, data]);
+      } catch (error) {
+        console.error("JSON 파싱 에러:", error);
+        console.error("받은 데이터:", event.data);
+      }
     };
 
     return () => {
-      socket.onmessage = null;
+      socket.close();
     };
   }, []);
 
@@ -27,36 +34,45 @@ const ChatWindow = ({ selectedUser, userId }) => {
       message,
     };
     socket.send(JSON.stringify(messageData));
+    setMessages((prevMessages) => [...prevMessages, messageData]);
     setMessage("");
   };
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <h2>{selectedUser} JOYTALK</h2>
-      </div>
-      <div className="chat-messages">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`message ${msg.from === userId ? "sent" : "received"}`}
+      <div className="chat-window">
+        <div className="chat-header">
+          <h2>{selectedUser} JOYTALK</h2>
+        </div>
+        <div className="chat-messages">
+          {/* 배경 비디오 추가 */}
+          <video
+              className="background-video"
+              autoPlay
+              loop
+              muted
           >
-            <strong>{msg.from}: </strong>
-            {msg.message}
-          </div>
-        ))}
+            <source src="/video/sunny.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {messages.map((msg, index) => (
+              <div
+                  key={index}
+                  className={`message ${msg.from === userId ? "send" : "received"}`}
+              >
+                {msg.message}
+              </div>
+          ))}
+        </div>
+        <form className="chat-input" onSubmit={sendMessage}>
+          <input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="메시지 입력"
+          />
+          <button type="submit">전송</button>
+        </form>
       </div>
-      <form className="chat-input" onSubmit={sendMessage}>
-        {" "}
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="메시지 입력"
-        />
-        <button type="submit">전송</button>
-      </form>
-    </div>
   );
 };
 
-export default ChatWindow;
+export default ChatWindowCopy;
