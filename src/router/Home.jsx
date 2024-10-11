@@ -14,9 +14,8 @@ const Home = () => {
         <video muted autoPlay loop>
           <source src={mainVideo} type="video/mp4" />
         </video>
+        <MainButton />
       </div>
-      <h1>joy talk</h1>
-      <MainButton />
     </>
   );
 };

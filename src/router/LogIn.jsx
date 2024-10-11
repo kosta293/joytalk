@@ -7,14 +7,14 @@ const LogIn = () => {
     <div>
       <h2>Log In Page</h2>
       <form>
-        <label>
+        <div>
           email:
           <input type="email" required />
-        </label>
-        <label>
+        </div>
+        <div>
           pw:
           <input type="password" required />
-        </label>
+        </div>
         <Link to="/Profile">
           <button type="loginbutton">Log In</button>
         </Link>
