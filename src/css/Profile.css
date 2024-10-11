@@ -15,7 +15,7 @@
   background-color: #ffffff;
   background-size: cover;
   margin-bottom: 250px;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 .nickname-input {
