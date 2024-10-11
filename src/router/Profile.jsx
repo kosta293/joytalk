@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate를 사용하여 페이지 이동
 import "../css/Profile.css"; // CSS 파일 임포트
-import profileImg from "../images/profile2.png"; // 기본 프로필 이미지 임포트
+
 import ProfileImageUploader from "../components/ProfileImageUploader"; // 이미지 업로더 컴포넌트 임포트
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

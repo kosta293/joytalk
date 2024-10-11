@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import "./ChatWindow.css";
+import { useEffect, useState, useRef } from "react";
+import "../css/ChatWindow.css";
+import Weather from "./Weather.jsx";
 
-const ChatWindow = ({ location }) => {
+const ChatWindow = ({ selectedUser, location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);
@@ -48,9 +48,12 @@ const ChatWindow = ({ location }) => {
     <div className="chat-container">
       <div className="chat-window">
         <div className="chat-header">
-          <h2> JOYTALK</h2>
+          <h2>JOYTALK</h2>
         </div>
         <div className="chat-messages">
+          <div>
+            <Weather></Weather> {/*배경 비디오 추가*/}
+          </div>
           {messages.map((msg, index) => (
             <div
               key={index}

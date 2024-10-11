@@ -17,6 +17,8 @@
   flex-direction: column;
   background-color: #f9f9f9;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* 상위 요소에 상대적 위치 지정 */
+  overflow: hidden; /* 자식 요소가 부모를 넘지 않도록 설정 */
 }
 
 .chat-header {
@@ -38,7 +40,7 @@
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #ffd4f8, #bad7ff);
+  background: linear-gradient(to bottom, #ffd4f8, #b4ecfde0);
   border-radius: 15px;
 }
 
@@ -49,7 +51,6 @@
 .chat-messages::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .message {
   max-width: 65%;
   padding: 8px 12px;
@@ -59,7 +60,7 @@
 }
 
 .send {
-  background-color: #bad7ff;
+  background-color: #b4ecfde0;
   align-self: flex-end;
   margin-left: auto;
 }
@@ -95,4 +96,21 @@
 
 .chat-input button:hover {
   background-color: #1f93ff;
+}
+
+.background-video {
+  position: absolute; /* 절대 위치 지정 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 비디오가 전체 폭을 차지하도록 설정 */
+  height: 100%; /* 비디오가 전체 높이를 차지하도록 설정 */
+  object-fit: cover; /* 비디오가 비율을 유지하며 가득 차도록 설정 */
+  z-index: -1; /* 비디오를 다른 요소 뒤로 보내기 */
+}
+
+.chat-header,
+.chat-messages,
+.chat-input {
+  position: relative; /* 자식 요소가 비디오 위에 위치하도록 설정 */
+  z-index: 1; /* 비디오 위에 표시되도록 설정 */
 }

@@ -1,6 +1,5 @@
 import React from "react";
-import { Route, Routes, Link } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
 import Iphone from "./components/Iphone";
 import LogIn from "./router/LogIn";
 import Home from "./router/Home";

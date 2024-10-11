@@ -1,0 +1,10 @@
+/* Background */
+.background-video {
+    position: absolute; /* 절대 위치 지정 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 비디오가 전체 폭을 차지하도록 설정 */
+    height: 100%; /* 비디오가 전체 높이를 차지하도록 설정 */
+    object-fit: cover; /* 비디오가 비율을 유지하며 가득 차도록 설정 */
+    z-index: -1; /* 비디오를 다른 요소 뒤로 보내기 */
+}
