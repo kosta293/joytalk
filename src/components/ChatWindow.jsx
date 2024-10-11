@@ -6,13 +6,11 @@ const ChatWindow = ({ selectedUser, location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);
+  const scrollRef = useRef(null); // 스크롤 최신화 상태
 
-  // 여기 값을 제대로 못가져옴
   const nickname = location.state?.nickname || "익명";
 
   useEffect(() => {
-    console.log("전체 state:", location.state);
-    console.log("받은 닉네임:", nickname); // 닉네임 확인
     socketRef.current = new WebSocket("ws://localhost:8079");
     socketRef.current.onmessage = (event) => {
       try {
@@ -26,7 +24,12 @@ const ChatWindow = ({ selectedUser, location }) => {
     return () => {
       socketRef.current.close();
     };
-  }, [nickname]); // 닉네임이 바뀔 때마다 useEffect 실행
+  }, [nickname]);
+
+  useEffect(() => {
+    // 스크롤 맨 밑에
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -69,6 +72,7 @@ const ChatWindow = ({ selectedUser, location }) => {
               )}
             </div>
           ))}
+          <div ref={scrollRef}></div> {/* 요거요거 메세지 */}
         </div>
         <form className="chat-input" onSubmit={sendMessage}>
           <input
@@ -76,7 +80,7 @@ const ChatWindow = ({ selectedUser, location }) => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="메시지 입력"
           />
-          <button type="submit">전송</button>
+          <button type="submit">전 송</button>
         </form>
       </div>
     </div>

@@ -17,9 +17,6 @@ server.on("connection", (socket) => {
       // 메시지를 보낸 클라이언트가 아닌 경우에만 메시지를 전송
       if (client !== socket) {
         client.send(JSON.stringify(parsedMessage));
-      } else {
-        parsedMessage.isMine = true;
-        client.send(JSON.stringify(parsedMessage));
       }
     });
   });
@@ -30,7 +27,6 @@ server.on("connection", (socket) => {
   });
 
   // 클라이언트에게 메시지를 전송
-  socket.send(JSON.stringify({ message: "연결되었습니다." }));
 });
 
 console.log("WebSocket 서버가 8079포트에서 실행 중입니다.");
