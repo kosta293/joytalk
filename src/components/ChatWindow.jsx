@@ -1,64 +1,88 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import "./ChatWindow.css";
 
-const ChatWindow = ({ selectedUser, userId }) => {
+const ChatWindow = ({ selectedUser, location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  let socket;
+  const socketRef = useRef(null);
+  const scrollRef = useRef(null); // 스크롤 최신화 상태
+
+  const nickname = location.state?.nickname || "익명";
 
   useEffect(() => {
-    socket = new WebSocket("ws://localhost:8079");
-
-    socket.onmessage = (event) => {
+    socketRef.current = new WebSocket("ws://localhost:8079");
+    socketRef.current.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
         setMessages((prevMessages) => [...prevMessages, data]);
       } catch (error) {
         console.error("JSON 파싱 에러:", error);
-        console.error("받은 데이터:", event.data);
       }
     };
 
     return () => {
-      socket.close();
+      socketRef.current.close();
     };
-  }, []);
+  }, [nickname]);
+
+  useEffect(() => {
+    // 스크롤 맨 밑에
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    if (!message.trim()) return;
+    if (!message.trim() || !socketRef.current) return;
 
     const messageData = {
-      from: userId, // from을 userId로 설정
+      from: nickname,
       to: selectedUser,
       message,
     };
-    socket.send(JSON.stringify(messageData));
+    socketRef.current.send(JSON.stringify(messageData));
     setMessages((prevMessages) => [...prevMessages, messageData]);
-    setMessage(""); // 메시지 입력 필드 초기화
+    setMessage("");
   };
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <h2>{selectedUser} JOYTALK</h2>
+    <div className="chat-container">
+      <div className="chat-window">
+        <div className="chat-header">
+          <h2>{selectedUser} JOYTALK</h2>
+        </div>
+        <div className="chat-messages">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`message ${
+                msg.from === nickname ? "send" : "received"
+              }`}
+            >
+              {msg.from === nickname ? (
+                <div className="my-message">
+                  <span>{msg.message}</span>
+                  <span className="nickname">{nickname}</span>
+                </div>
+              ) : (
+                <div className="received-message">
+                  <span className="nickname">{msg.from}</span>
+                  <span>{msg.message}</span>
+                </div>
+              )}
+            </div>
+          ))}
+          <div ref={scrollRef}></div> {/* 요거요거 메세지 */}
+        </div>
+        <form className="chat-input" onSubmit={sendMessage}>
+          <input
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="메시지 입력"
+          />
+          <button type="submit">전 송</button>
+        </form>
       </div>
-      <div className="chat-messages">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`message ${msg.from === userId ? "send" : "received"}`}
-          ></div>
-        ))}
-      </div>
-      <form className="chat-input" onSubmit={sendMessage}>
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="메시지 입력"
-        />
-        <button type="submit">전송</button>
-      </form>
     </div>
   );
 };
