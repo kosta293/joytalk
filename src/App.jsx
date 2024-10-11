@@ -6,8 +6,6 @@ import LogIn from "./router/LogIn";
 import Home from "./router/Home";
 import Profile from "./router/Profile";
 import Chat from "./router/Chat";
-import { IPhoneLayout } from "react-iphone-layout";
-import "react-iphone-layout/dist/ReactIPhoneLayout.css"; // ✨
 
 function App() {
   return (

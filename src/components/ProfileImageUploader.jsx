@@ -14,6 +14,7 @@ const HiddenInput = styled.input`
   display: none; // 실제 파일 입력 요소는 숨김
 `;
 
+
 export const MyProfileImg = styled.img`
   width: 150px; // 이미지 너비
   height: 150px; // 이미지 높이
