@@ -9,7 +9,7 @@ const Chat = () => {
   return (
     <>
       {/*<ChatWindow></ChatWindow>*/}
-      <ChatWindowCopy></ChatWindowCopy>
+      <ChatWindowCopy location={location} />
       {/*<ChatWindow location={location} /> /!* location prop 전달 *!/*/}
     </>
   );

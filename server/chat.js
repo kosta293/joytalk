@@ -27,6 +27,7 @@ server.on("connection", (socket) => {
   });
 
   // 클라이언트에게 메시지를 전송
+  socket.send("ㅁㄴㅇㅁㄴㅇㅁㄴㅇ")
 });
 
 console.log("WebSocket 서버가 8079포트에서 실행 중입니다.");

@@ -1,6 +1,7 @@
-import styles from './App.css';
+// import styles from '../css/App.css';
+import './Weather.css';
 import React, { useState, useEffect, useRef } from 'react';
-import Dfs_xy_conv from './ConvertCoordinate';
+import Dfs_xy_conv from './ConvertCoordinate.jsx';
 
 function Weather() {
     // API 키 및 URL 설정
@@ -198,6 +199,7 @@ function Weather() {
 
     // 날씨에 따라 배경 비디오를 변경하는 함수
     function bgChangeByClimate() {
+        return videoSrc + "night.mp4";
         if (pty[0] === "비") {
             // 현재 날씨가 비일 경우
             return videoSrc + "rain.mp4";
@@ -209,31 +211,35 @@ function Weather() {
 
     return (
         <main>
-            <section className={styles.container}>
+            {/*<section className={styles.container}>
                 <div className={styles.apiContainer}>
                     <div className={styles.weatherDetailWrap1}>
                         <ul>
-                            <li>{region}</li> {/* 지역 정보 */}
-                            <li>{t1hR[0]}</li> {/* 현재 기온 */}
-                            <li>{ptyR[0]}</li> {/* 현재 날씨 상태 */}
-                            <li>최고: {tmx} 최저: {tmn}</li> {/* 최고 및 최저 기온 */}
+                            <li>{region}</li>  지역 정보
+                            <li>{t1hR[0]}</li>  현재 기온
+                            <li>{ptyR[0]}</li>  현재 날씨 상태
+                            <li>최고: {tmx} 최저: {tmn}</li>  최고 및 최저 기온
                         </ul>
                     </div>
                     <div id='hourly weather forecast'>
                         <p>시간별 일기예보</p>
-                        <p>지금: {ptyR[0]} {t1hR[0]}</p> {/* 현재 날씨 및 기온 표시 */}
+                        <p>지금: {ptyR[0]} {t1hR[0]}</p>  현재 날씨 및 기온 표시
                         {fcstTimeR.slice(1, 6).map((time, index) => (
                             <p key={index}>{time}: {ptyR[index + 1]} {t1hR[index + 1]}</p> // 시간별 예보
                         ))}
                     </div>
                 </div>
-            </section>
-            <div className={styles.jb_box}>
+            </section>*/}
+            <div className="jb_box">
                 <video
+                    className="background-video"
+                    autoPlay
+                    loop
                     muted
+                    /*muted
                     autoPlay
                     playsInline
-                    loop
+                    loop*/
                     ref={videoRef}
                     onCanPlay={() => setPlayBackRate()} // 비디오가 재생 가능할 때 재생 속도 설정
                 >
