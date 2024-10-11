@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import "./ChatWindow.css";
 
-const ChatWindow = ({ selectedUser, location }) => {
+const ChatWindow = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);
@@ -37,7 +37,6 @@ const ChatWindow = ({ selectedUser, location }) => {
 
     const messageData = {
       from: nickname,
-      to: selectedUser,
       message,
     };
     socketRef.current.send(JSON.stringify(messageData));
@@ -49,7 +48,7 @@ const ChatWindow = ({ selectedUser, location }) => {
     <div className="chat-container">
       <div className="chat-window">
         <div className="chat-header">
-          <h2>{selectedUser} JOYTALK</h2>
+          <h2> JOYTALK</h2>
         </div>
         <div className="chat-messages">
           {messages.map((msg, index) => (
@@ -60,12 +59,12 @@ const ChatWindow = ({ selectedUser, location }) => {
               }`}
             >
               {msg.from === nickname ? (
-                <div className="my-message">
+                <div className="send">
                   <span>{msg.message}</span>
                   <span className="nickname">{nickname}</span>
                 </div>
               ) : (
-                <div className="received-message">
+                <div className="received">
                   <span className="nickname">{msg.from}</span>
                   <span>{msg.message}</span>
                 </div>
