@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate를 사용하여 페이지 이동
 import "../css/Profile.css"; // CSS 파일 임포트
-
 import ProfileImageUploader from "../components/ProfileImageUploader"; // 이미지 업로더 컴포넌트 임포트
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,9 +14,17 @@ const Profile = () => {
   // 등록 버튼 클릭 시 호출되는 함수
   const handleRegister = () => {
     if (nickname) {
-      navigate("/Chat", { state: { nickname } }); // 닉네임과 함께 /Chat 페이지로 이동
+      navigate("/Chat", { state: { nickname, imageUrl: uploadedImage } }); // 닉네임과 함께 /Chat 페이지로 이동
     } else {
-      toast.error("닉네임을 입력해주세요.");
+      toast.info("닉네임을 입력해주세요.", {
+        position: "center",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        process: undefined,
+      });
     }
   };
 
@@ -46,6 +53,7 @@ const Profile = () => {
       >
         등록
       </button>
+      <ToastContainer />
     </div>
   );
 };
