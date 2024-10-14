@@ -12,7 +12,8 @@ function App() {
       <Route
         path="/"
         element={
-          <Iphone isStatusBar={false}>
+          <Iphone>
+            <span className="joytalk">JOY TALK</span>
             <Home />
           </Iphone>
         }

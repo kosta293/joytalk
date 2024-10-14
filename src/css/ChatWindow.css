@@ -30,6 +30,12 @@
   border-top-right-radius: 8px; /* 우측 상단 둥글게 */
 }
 
+.header-nickname {
+  font-weight: bold;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
 .chat-messages {
   flex: 1; /* 남은 공간을 모두 차지 */
   overflow-y: auto; /* 세로 스크롤 가능 */
@@ -113,6 +119,7 @@
 .time-stamp {
   margin: 5px;
   font-size: 14px;
+  max-width: 28px;
 }
 
 /* 프로필 이미지 스타일 */
