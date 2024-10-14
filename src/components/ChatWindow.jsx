@@ -11,6 +11,41 @@ const ChatWindow = ({ selectedUser, location }) => {
   const nickname = location.state?.nickname || "익명"; // 닉네임, 기본값은 "익명"
   const imageUrl = location.state?.imageUrl; // 프로필 이미지 URL
 
+  /* 타임 스탬프 */
+  const formatTimestamp = (timestamp) => {
+    // 문자열인 경우, Date.parse()로 변환
+    if (typeof timestamp === "string") {
+      const parsedTimestamp = Date.parse(timestamp);
+      if (!isNaN(parsedTimestamp)) {
+        timestamp = parsedTimestamp; // 밀리초로 변환
+      } else {
+        return "유효하지 않은 날짜"; // 변환 실패
+      }
+    }
+
+    // 숫자 형식인지 확인
+    if (typeof timestamp !== "number" || isNaN(timestamp)) {
+      return "유효하지 않은 날짜";
+    }
+
+    const date = new Date(timestamp);
+    if (isNaN(date.getTime())) {
+      // date가 유효한지 확인
+      return "유효하지 않은 날짜";
+    }
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const amPm = hours >= 12 ? "오후" : "오전";
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+
+    return `${amPm} ${formattedHours}:${formattedMinutes}`;
+  };
+
+  // 테스트 예제
+
+  /* 여기까지 */
+
   useEffect(() => {
     // WebSocket 연결 설정
     socketRef.current = new WebSocket("ws://localhost:8079");
@@ -42,7 +77,10 @@ const ChatWindow = ({ selectedUser, location }) => {
       from: nickname, // 메시지 발신자
       message, // 메시지 내용
       imageUrl: imageUrl, // 프로필 이미지
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
     };
+
     socketRef.current.send(JSON.stringify(messageData)); // 메시지를 소켓으로 전송
     setMessages((prevMessages) => [...prevMessages, messageData]); // 메시지 리스트 업데이트
     setMessage(""); // 입력 필드 초기화
@@ -69,6 +107,9 @@ const ChatWindow = ({ selectedUser, location }) => {
               {msg.from === nickname ? (
                 // 나의 메시지인 경우
                 <div className="my-message">
+                  <span className="time-stamp">
+                    {formatTimestamp(msg.timestamp)}
+                  </span>
                   <div className="send-message">
                     <span className="text">{msg.message}</span>{" "}
                     {/* 메시지 내용 */}
@@ -95,10 +136,13 @@ const ChatWindow = ({ selectedUser, location }) => {
                     <span className="nickname">{msg.from}</span>{" "}
                     {/* 상대방 닉네임 */}
                   </div>
-                  <div className="message-content">
+                  <div className="your-message">
                     <span className="text">{msg.message}</span>{" "}
                     {/* 메시지 내용 */}
                   </div>
+                  <span className="time-stamp">
+                    {formatTimestamp(msg.timestamp)}
+                  </span>
                 </div>
               )}
             </div>
