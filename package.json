@@ -14,6 +14,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.1",
+    "@react-oauth/google": "^0.12.1",
     "babel-runtime": "^6.26.0",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
