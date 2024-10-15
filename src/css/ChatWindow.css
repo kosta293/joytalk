@@ -30,6 +30,12 @@
   border-top-right-radius: 8px; /* 우측 상단 둥글게 */
 }
 
+.header-nickname {
+  font-weight: bold;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
 .chat-messages {
   flex: 1; /* 남은 공간을 모두 차지 */
   overflow-y: auto; /* 세로 스크롤 가능 */
@@ -83,6 +89,7 @@
   margin-right: 10px; /* 프로필과의 간격 */
   max-width: 67%; /* 최대 너비 설정 */
   margin-top: 5px;
+  font-size: 16px;
 }
 
 /* 상대방 메시지 스타일 */
@@ -108,11 +115,13 @@
   padding: 10px; /* 내부 여백 */
   max-width: 67%; /* 최대 너비 설정 */
   margin-left: 10px; /* 프로필과의 간격 */
+  font-size: 16px;
 }
 
 .time-stamp {
   margin: 5px;
-  font-size: 14px;
+  font-size: 13px;
+  max-width: 28px;
 }
 
 /* 프로필 이미지 스타일 */
@@ -137,10 +146,11 @@
 /* 입력 필드 스타일 */
 .chat-input input {
   flex: 1; /* 남은 공간을 모두 차지 */
-  padding: 15px; /* 내부 여백 */
+  padding: 10px; /* 내부 여백 */
   border: 1px solid #ccc; /* 경계선 */
   border-radius: 10px; /* 둥근 모서리 */
-  margin-right: 20px; /* 버튼과의 간격 */
+  margin-right: 10px; /* 버튼과의 간격 */
+  font-size: 16px;
 }
 
 /* 버튼 스타일 */
@@ -148,10 +158,11 @@
   background-color: #1f93ff; /* 버튼 배경색 */
   color: white; /* 글자 색상 */
   border: none; /* 경계선 없음 */
-  padding: 15px; /* 내부 여백 */
+  padding: 10px; /* 내부 여백 */
   width: 100px; /* 고정 너비 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 커서 모양 변경 */
+  font-size: 16px;
 }
 
 /* 버튼 hover 효과 */
@@ -176,4 +187,46 @@
 .chat-input {
   position: relative; /* 자식 요소가 비디오 위에 위치하도록 설정 */
   z-index: 1; /* 비디오 위에 표시되도록 설정 */
+}
+
+/* 이모지 추가 */
+.emoji-picker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 불투명 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.emoji-picker {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: fit-content;
+}
+
+/* 닫기 버튼 스타일 */
+.close-btn {
+  position: absolute;
+  top: -30px; /* 이모티콘 피커 위쪽에 */
+  right: 0;
+  background: grey;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.emoji-button {
+  font-size: 32px;
+  cursor: pointer;
+  margin-right: 10px;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom"; // useLocation 추가
-import "../css/Chat.css";
 import ChatWindow from "../components/ChatWindow";
 
 const Chat = () => {
