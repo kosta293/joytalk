@@ -1,10 +1,17 @@
 import { useEffect, useState, useRef } from "react"; // 필요한 React 훅들 임포트
 import "../css/ChatWindow.css"; // CSS 스타일 임포트
 import Weather from "./Weather.jsx"; // 날씨 컴포넌트 임포트
+// 여기 추가
+import Picker from "@emoji-mart/react"; // 새로운 패키지의 Picker 임포트
 
 const ChatWindow = ({ location }) => {
   const [message, setMessage] = useState(""); // 현재 입력된 메시지 상태
   const [messages, setMessages] = useState([]); // 수신된 메시지 리스트 상태
+
+  // 여기추가
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // 이모지 선택창 표시 상태
+  const emojiPickerRef = useRef(null); // 이모티콘 피커 창 위치 참조
+
   const socketRef = useRef(null); // WebSocket 참조
   const scrollRef = useRef(null); // 스크롤 최신화 상태
 
@@ -82,6 +89,13 @@ const ChatWindow = ({ location }) => {
     setMessage(""); // 입력 필드 초기화
   };
 
+  // 이모티콘 추가
+  const addEmoji = (emoji) => {
+    const emojiMarkup = `<span class="message-input-emoji">${emoji.native}</span>`;
+    setMessage((prevMessage) => prevMessage + emoji.native); // 이모티콘을 메시지에 추가
+    setShowEmojiPicker(false); // 이모티콘 선택 후 창 닫기
+  };
+
   return (
     <div className="chat-container">
       <div className="chat-window">
@@ -145,12 +159,41 @@ const ChatWindow = ({ location }) => {
           ))}
           <div ref={scrollRef}></div> {/* 스크롤을 위한 빈 div */}
         </div>
+
+        {/* 이모티콘 선택창 */}
+        {showEmojiPicker && (
+          <div
+            className="emoji-picker-overlay"
+            onClick={() => setShowEmojiPicker(false)}
+          >
+            <div
+              className="emoji-picker"
+              ref={emojiPickerRef}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="close-btn"
+                onClick={() => setShowEmojiPicker(false)}
+              >
+                close
+              </button>
+              <Picker onEmojiSelect={addEmoji} theme="light" />
+            </div>
+          </div>
+        )}
+
         <form className="chat-input" onSubmit={sendMessage}>
           <input
-            value={message} // 입력 필드의 값
-            onChange={(e) => setMessage(e.target.value)} // 입력 시 상태 업데이트
-            placeholder="메시지 입력" // 플레이스홀더
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="메시지 입력"
           />
+          <span
+            className="emoji-button"
+            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+          >
+            😊
+          </span>
           <button type="submit">전 송</button> {/* 메시지 전송 버튼 */}
         </form>
       </div>

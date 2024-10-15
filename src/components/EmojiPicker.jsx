@@ -1,15 +1,22 @@
-import React, { useEffect, useRef } from "react"
-import data from "@emoji-mart/data"
-import { Picker, PickerProps } from "emoji-mart"
+// // src/components/EmojiPicker.jsx
+// import React from "react";
+// import { Picker } from "emoji-mart";
 
-const EmojiPicker = (props: PickerProps | Readonly<PickerProps> | any) => {
-    const ref = useRef() as React.MutableRefObject<HTMLInputElement>
+// const EmojiPicker = ({ onSelectEmoji, visible }) => {
+//   if (!visible) return null; // 피커가 보이지 않으면 아무것도 렌더링하지 않음
 
-    useEffect(() => {
-        new Picker({ ...props, data, ref })
-    }, [props])
+//   return (
+//     <div
+//       style={{
+//         position: "absolute",
+//         bottom: "60px",
+//         right: "20px",
+//         zIndex: 1000,
+//       }}
+//     >
+//       <Picker onSelect={onSelectEmoji} />
+//     </div>
+//   );
+// };
 
-    return <div ref={ref} />
-}
-
-export default EmojiPicker;
+// export default EmojiPicker;
