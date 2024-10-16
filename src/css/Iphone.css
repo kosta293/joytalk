@@ -7,15 +7,24 @@ body {
   background-color: #f0f0f0;
 }
 
+.phone-container {
+  position: relative; /* 컨테이너에 relative 추가 */
+}
+
 .phone {
   width: 530px;
   height: 930px;
-  border: 3px solid #000000;
-  border-radius: 50px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+  border: 12px solid #000000;
+  border-radius: 70px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e5e5e5 100%);
+  z-index: 1;
+}
+.phone-edge {
+  border: 3px solid rgba(96, 94, 94, 0.384);
+  border-radius: 72px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 1);
 }
 
 .content {
@@ -26,4 +35,114 @@ body {
   background-color: #fff;
   position: relative;
   z-index: 1;
+}
+
+.phone-top {
+  width: 210px;
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+  background-color: black;
+  border-radius: 30px;
+  top: 10px;
+  left: 160px;
+}
+
+.phone-speaker {
+  width: 50px;
+  height: 5px;
+  background-color: rgb(77, 76, 76);
+  border-radius: 5px;
+  position: absolute;
+  z-index: 11;
+  top: 17px;
+  left: 80px;
+}
+
+.phone-camera {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(77, 76, 76);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 11;
+  top: 11px;
+  left: 180px;
+}
+
+.phone-lens {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(
+    circle,
+    rgb(169, 168, 168),
+    rgb(27, 26, 26),
+    rgb(0, 0, 0)
+  );
+  border-radius: 50%;
+  position: absolute;
+  z-index: 12;
+  top: 13px;
+  left: 182.5px;
+}
+
+.volume-buttons {
+  position: absolute;
+  left: -6px; /* 위치 조정 */
+  top: 200px;
+  width: 0px;
+  height: 60px;
+  background-color: #888; /* 배경색 확인 */
+  border-radius: 5px;
+  z-index: 1; /* z-index 추가 */
+  overflow: visible;
+}
+
+.volume-buttons::before,
+.volume-buttons::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 60px;
+  background: linear-gradient(to left, black, rgb(211, 211, 211));
+  border-radius: 3px;
+  margin-top: 15px;
+}
+
+.power-button {
+  position: absolute;
+  right: -6px; /* 위치 조정 */
+  top: 230px;
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(to right, black, rgb(211, 211, 211));
+  border-radius: 5px;
+  z-index: 1; /* z-index 추가 */
+}
+
+.phone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+  z-index: 2;
+}
+
+.phone::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
+  z-index: 2;
+}
+
+.volume-buttons,
+.power-button {
+  overflow: visible;
 }

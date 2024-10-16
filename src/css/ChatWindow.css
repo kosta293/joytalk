@@ -121,10 +121,18 @@
 .time-stamp {
   margin: 5px;
   font-size: 13px;
-  max-width: 28px;
+  max-width: 32px;
+  text-align: center;
 }
 
 /* 프로필 이미지 스타일 */
+.profile-image1 {
+  width: 70px; /* 프로필 이미지 너비 */
+  height: 70px; /* 프로필 이미지 높이 */
+  border-radius: 50%; /* 동그랗게 만들기 */
+  margin-left: 15px;
+}
+
 .profile-image {
   width: 70px; /* 프로필 이미지 너비 */
   height: 70px; /* 프로필 이미지 높이 */
@@ -140,7 +148,7 @@
 .chat-input {
   display: flex; /* flexbox 레이아웃 사용 */
   padding: 18px; /* 내부 여백 */
-  border-top: 1px solid #ccc; /* 상단 경계선 */
+  margin-left: 10px;
 }
 
 /* 입력 필드 스타일 */
@@ -149,7 +157,7 @@
   padding: 10px; /* 내부 여백 */
   border: 1px solid #ccc; /* 경계선 */
   border-radius: 10px; /* 둥근 모서리 */
-  margin-right: 10px; /* 버튼과의 간격 */
+  margin-right: 5px; /* 버튼과의 간격 */
   font-size: 16px;
 }
 
@@ -159,10 +167,11 @@
   color: white; /* 글자 색상 */
   border: none; /* 경계선 없음 */
   padding: 10px; /* 내부 여백 */
-  width: 100px; /* 고정 너비 */
+  width: 90px; /* 고정 너비 */
   border-radius: 10px; /* 둥근 모서리 */
   cursor: pointer; /* 커서 모양 변경 */
   font-size: 16px;
+  margin-right: 10px;
 }
 
 /* 버튼 hover 효과 */
@@ -227,6 +236,8 @@
 
 .emoji-button {
   font-size: 32px;
+  margin-right: 5px;
+  text-align: center;
+  padding-bottom: 5px;
   cursor: pointer;
-  margin-right: 10px;
 }

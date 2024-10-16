@@ -104,7 +104,7 @@ const ChatWindow = ({ location }) => {
             <img
               src={imageUrl}
               alt="업로드된 프로필 이미지"
-              className="profile-image"
+              className="profile-image1"
             />
           )}
           <span className="header-nickname">{nickname}</span>{" "}
