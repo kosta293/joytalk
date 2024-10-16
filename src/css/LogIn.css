@@ -1,0 +1,26 @@
+.login-background {
+  width: 530px;
+  height: 930px;
+  background: radial-gradient(at center, #60b1fd, #b4ecfde0, white);
+}
+
+.login-box {
+  position: relative;
+  text-align: center;
+  top: 330px;
+  left: 85px;
+  padding-top: 30px;
+  font-size: 50px;
+  width: 350px;
+  height: 250px;
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 50px;
+}
+
+.login-google {
+  margin-top: 50px;
+  width: 300px;
+  margin-left: 25px;
+}
