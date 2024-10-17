@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Link import
+import { Link } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import "../css/LogIn.css";
 
@@ -17,7 +17,7 @@ const LogIn = () => {
     <GoogleOAuthProvider clientId="496426685229-nni0d8e2ajcfee5dj9f42223mr963kel.apps.googleusercontent.com">
       <div className="login-background">
         <div className="login-box">
-          Login
+          Log In
           {/*Google Login Button*/}
           <div className="login-google">
             <GoogleLogin

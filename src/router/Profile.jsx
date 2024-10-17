@@ -58,4 +58,4 @@ const Profile = () => {
   );
 };
 
-export default Profile; // Profile 컴포넌트 내보내기
+export default Profile;

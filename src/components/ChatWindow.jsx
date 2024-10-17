@@ -112,75 +112,55 @@ const ChatWindow = ({ location }) => {
         </div>
         <div className="chat-messages">
           <Weather /> {/* 날씨 컴포넌트 */}
-          {messages.map((msg, index) => (
-            <div key={index} className="message-wrapper">
-              {msg.from === nickname ? (
-                // 나의 메시지인 경우
-                <div className="my-message">
-                  <span className="time-stamp">
-                    {formatTimestamp(msg.timestamp)}
-                  </span>
-                  <div className="send-message">
-                    <span className="text">{msg.message}</span>{" "}
-                    {/* 메시지 내용 */}
+          <div className="chat-messages-list">
+            {messages.map((msg, index) => (
+              <div key={index} className="message-wrapper">
+                {msg.from === nickname ? (
+                  // 나의 메시지인 경우
+                  <div className="my-message">
+                    <span className="time-stamp">
+                      {formatTimestamp(msg.timestamp)}
+                    </span>
+                    <div className="send-message">
+                      <span className="text">{msg.message}</span>{" "}
+                      {/* 메시지 내용 */}
+                    </div>
+                    <div className="profile-section">
+                      <img
+                        src={imageUrl} // 나의 프로필 이미지
+                        alt="내 프로필"
+                        className="profile-image"
+                      />
+                      <span className="nickname">{nickname}</span>{" "}
+                      {/* 내 닉네임 */}
+                    </div>
                   </div>
-                  <div className="profile-section">
-                    <img
-                      src={imageUrl} // 나의 프로필 이미지
-                      alt="내 프로필"
-                      className="profile-image"
-                    />
-                    <span className="nickname">{nickname}</span>{" "}
-                    {/* 내 닉네임 */}
+                ) : (
+                  // 상대방의 메시지인 경우
+                  <div className="received-message">
+                    <div className="profile-section">
+                      <img
+                        src={msg.imageUrl} // 상대방 프로필 이미지
+                        alt="상대방 프로필"
+                        className="profile-image"
+                      />
+                      <span className="nickname">{msg.from}</span>{" "}
+                      {/* 상대방 닉네임 */}
+                    </div>
+                    <div className="your-message">
+                      <span className="text">{msg.message}</span>{" "}
+                      {/* 메시지 내용 */}
+                    </div>
+                    <span className="time-stamp">
+                      {formatTimestamp(msg.timestamp)}
+                    </span>
                   </div>
-                </div>
-              ) : (
-                // 상대방의 메시지인 경우
-                <div className="received-message">
-                  <div className="profile-section">
-                    <img
-                      src={msg.imageUrl} // 상대방 프로필 이미지
-                      alt="상대방 프로필"
-                      className="profile-image"
-                    />
-                    <span className="nickname">{msg.from}</span>{" "}
-                    {/* 상대방 닉네임 */}
-                  </div>
-                  <div className="your-message">
-                    <span className="text">{msg.message}</span>{" "}
-                    {/* 메시지 내용 */}
-                  </div>
-                  <span className="time-stamp">
-                    {formatTimestamp(msg.timestamp)}
-                  </span>
-                </div>
-              )}
-            </div>
-          ))}
-          <div ref={scrollRef}></div> {/* 스크롤을 위한 빈 div */}
-        </div>
-
-        {/* 이모티콘 선택창 */}
-        {showEmojiPicker && (
-          <div
-            className="emoji-picker-overlay"
-            onClick={() => setShowEmojiPicker(false)}
-          >
-            <div
-              className="emoji-picker"
-              ref={emojiPickerRef}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="close-btn"
-                onClick={() => setShowEmojiPicker(false)}
-              >
-                close
-              </button>
-              <Picker onEmojiSelect={addEmoji} theme="light" />
-            </div>
+                )}
+              </div>
+            ))}
+            <div ref={scrollRef}></div> {/* 스크롤을 위한 빈 div */}
           </div>
-        )}
+        </div>
 
         <form className="chat-input" onSubmit={sendMessage}>
           <input
