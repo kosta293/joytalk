@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Iphone from "./components/Iphone";
 import LogIn from "./router/LogIn";
 import Home from "./router/Home";

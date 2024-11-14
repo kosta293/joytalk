@@ -3,6 +3,7 @@ import "../css/ChatWindow.css"; // CSS 스타일 임포트
 import Weather from "./Weather.jsx"; // 날씨 컴포넌트 임포트
 // 여기 추가
 import Picker from "@emoji-mart/react"; // 새로운 패키지의 Picker 임포트
+import {  useNavigate } from "react-router-dom";
 
 const ChatWindow = ({ location }) => {
   const [message, setMessage] = useState(""); // 현재 입력된 메시지 상태
@@ -17,6 +18,11 @@ const ChatWindow = ({ location }) => {
 
   const nickname = location.state?.nickname || "익명"; // 닉네임, 기본값은 "익명"
   const imageUrl = location.state?.imageUrl; // 프로필 이미지 URL
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // 이전 페이지로 돌아가기
+  };
 
   /* 타임 스탬프 */
   const formatTimestamp = (timestamp) => {
@@ -109,6 +115,7 @@ const ChatWindow = ({ location }) => {
           )}
           <span className="header-nickname">{nickname}</span>{" "}
           {/* 닉네임 표시 */}
+          <button onClick={handleBack}>뒤로가기</button>
         </div>
         <div className="chat-messages">
           <Weather /> {/* 날씨 컴포넌트 */}

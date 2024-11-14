@@ -250,3 +250,19 @@
   padding-bottom: 5px;
   cursor: pointer;
 }
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+
+  margin-top: 25px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
