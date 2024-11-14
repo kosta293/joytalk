@@ -27,7 +27,7 @@ const LogIn = () => {
           </div>
           {/*Kakao Login Button*/}
           <Link to="/Profile">
-            <button type="loginbutton">카카오로그인</button>
+            <button type="loginbutton">로그인</button>
           </Link>
         </div>
       </div>

@@ -1,0 +1,37 @@
+/* nav태그 아래의 자식들을 수평정렬하기 위한 설정 */
+nav {
+  overflow: hidden;
+}
+/* nav태그 아래의 div태그들을 수평정렬 및 세로길이 설정 */
+nav > div {
+  /* 수평정렬, 5개의 button을 각각 20% width만큼 할당 */
+  text-align: center;
+  float: left;
+  width: 33.3333%;
+
+  /* 세로길이 설정 */
+  height: 90px;
+  line-height: 80px;
+}
+.nav-friends {
+  font-size: 33px;
+  color: #6e6e6e;
+}
+.nav-friends:hover {
+  color: #1d1d1d;
+}
+.nav-chatlist {
+  font-size: 33px;
+  color: #6e6e6e;
+}
+.nav-chatlist:hover {
+  font-size: 33px;
+  color: #3a3a3a;
+}
+.nav-mypage {
+  font-size: 33px;
+  color: #6e6e6e;
+}
+.nav-mypage:hover {
+  color: #1d1d1d;
+}

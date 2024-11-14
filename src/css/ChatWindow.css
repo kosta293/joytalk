@@ -23,8 +23,8 @@
 }
 
 .chat-header {
-  background-color: #1f93ff; /* 헤더 배경색 */
-  color: white; /* 글자 색상 */
+  background-color: #f9f9f9; /* 헤더 배경색 */
+  color: black; /* 글자 색상 */
   padding: 10px; /* 패딩 */
   border-top-left-radius: 8px; /* 좌측 상단 둥글게 */
   border-top-right-radius: 8px; /* 우측 상단 둥글게 */

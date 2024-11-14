@@ -25,6 +25,7 @@ function Weather() {
     const [longitude, setLongitude] = useState(); // 경도
     const [fcstTimeR, setFcstTimeR] = useState([]); // 예보 시간
     const [ptyR, setPtyR] = useState([]); // 강수형태
+    
     const [t1hR, setT1hR] = useState([]); // 기온
     const videoRef = useRef(); // 비디오 참조
     const videoSrc = "/video/"; // 비디오 소스 경로
