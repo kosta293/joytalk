@@ -1,15 +1,15 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react"; // React 및 훅들 import
 import "../css/ChatWindow.css"; // CSS 스타일 임포트
 import Weather from "./Weather.jsx"; // 날씨 컴포넌트 임포트
 import Picker from "@emoji-mart/react"; // 새로운 패키지의 Picker 임포트
+import useScrollToBottom from "./useScrollToBottom"; // 커스텀 훅 임포트
 
 const ChatWindow = ({ location }) => {
   const [message, setMessage] = useState(""); // 현재 입력된 메시지 상태
   const [messages, setMessages] = useState([]); // 수신된 메시지 리스트 상태
   const [showEmojiPicker, setShowEmojiPicker] = useState(false); // 이모지 선택창 표시 상태
-  // const emojiPickerRef = useRef(null); // 이모티콘 피커 창 위치 참조
   const socketRef = useRef(null); // WebSocket 참조
-  const scrollRef = useRef(null); // 스크롤 최신화 상태
+  const messagesRef = useRef(null); // 메시지 리스트 컨테이너 참조
 
   const nickname = location.state?.nickname || "익명"; // 닉네임, 기본값은 "익명"
   const imageUrl = location.state?.imageUrl; // 프로필 이미지 URL
@@ -54,11 +54,6 @@ const ChatWindow = ({ location }) => {
     };
   }, [nickname]); // 닉네임이 변경될 때마다 새로운 소켓 생성
 
-  useEffect(() => {
-    // 메시지가 업데이트될 때마다 스크롤을 맨 아래로 이동
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
   const sendMessage = (e) => {
     e.preventDefault(); // 폼 제출 기본 동작 방지
     if (!message.trim() || !socketRef.current) return; // 메시지가 비어있거나 소켓이 없으면 종료
@@ -81,6 +76,9 @@ const ChatWindow = ({ location }) => {
     setShowEmojiPicker(false); // 이모티콘 선택 후 창 닫기
   };
 
+  // 커스텀 훅 사용 (스크롤 자동 이동)
+  useScrollToBottom(messagesRef);
+
   return (
     <div className="chat-container">
       <div className="chat-window">
@@ -96,7 +94,7 @@ const ChatWindow = ({ location }) => {
         </div>
         <div className="chat-messages">
           <Weather />
-          <div className="chat-messages-list">
+          <div className="chat-messages-list" ref={messagesRef}>
             {messages.map((msg, index) => (
               <div key={index} className="message-wrapper">
                 {msg.from === nickname ? (
@@ -136,7 +134,6 @@ const ChatWindow = ({ location }) => {
                 )}
               </div>
             ))}
-            <div ref={scrollRef}></div>
           </div>
         </div>
 
