@@ -11,10 +11,9 @@ const Friends = () => {
   const [nickname, setNickname] = useState("익명");
   const [imageUrl, setImageUrl] = useState(SampleImage);
 
-  // useEffect로 location.state가 변경될 때마다 상태 업데이트
+  // useEffect로 location.state가 있을 때만 상태 업데이트
   useEffect(() => {
     if (location.state) {
-      // location.state가 있을 때만 업데이트
       setNickname(location.state.nickname || "익명");
       setImageUrl(location.state.imageUrl || SampleImage);
     }
@@ -27,15 +26,39 @@ const Friends = () => {
     { nickname: "친구3", imageUrl: SampleImage },
   ]);
 
-  // 친구 추가 함수 (예시)
+  // 친구 추가 팝업 창 관련 상태
+  const [showAddFriendPopup, setShowAddFriendPopup] = useState(false);
+  const [searchNickname, setSearchNickname] = useState(""); // 검색된 닉네임
+  const [searchedFriend, setSearchedFriend] = useState(null); // 검색된 친구 (존재할 경우)
+
+  // 친구 추가 함수
   const handleAddFriend = () => {
-    setFriends([
-      ...friends,
-      {
-        nickname: `친구${friends.length + 1}`,
-        imageUrl: SampleImage,
-      },
-    ]);
+    if (searchedFriend) {
+      setFriends([
+        ...friends,
+        {
+          nickname: searchedFriend.nickname,
+          imageUrl: searchedFriend.imageUrl,
+        },
+      ]);
+      setShowAddFriendPopup(false); // 친구 추가 후 팝업 닫기
+    }
+  };
+
+  // 친구 검색 함수 (간단히 더미 데이터에서 검색)
+  const handleSearchFriend = () => {
+    const friend = friends.find((friend) => friend.nickname === searchNickname);
+    if (friend) {
+      setSearchedFriend(friend);
+    } else {
+      setSearchedFriend(null); // 검색 결과 없으면 null
+    }
+  };
+
+  // 친구 추가 버튼 클릭 시 팝업 열기
+  const handleAddFriendClick = () => {
+    console.log("친구 추가 버튼 클릭됨");
+    setShowAddFriendPopup(true);
   };
 
   return (
@@ -49,10 +72,13 @@ const Friends = () => {
           />
         )}
         <div className="header-nickname">{nickname}</div>
-        <button className="add-friend-button" onClick={handleAddFriend}>
+        {/* 친구 추가 버튼 */}
+        <button className="add-friend-button" onClick={handleAddFriendClick}>
           친구 추가
         </button>
       </div>
+
+      {/* 친구 목록 */}
       <div className="friends-body">
         <ul className="friends-list">
           {friends.map((friend, index) => (
@@ -67,6 +93,52 @@ const Friends = () => {
           ))}
         </ul>
       </div>
+
+      {/* 친구 추가 팝업 창 */}
+      {showAddFriendPopup && (
+        <div className="add-friend-popup">
+          <div className="popup-content">
+            <h3>친구 추가</h3>
+            {/* 검색된 친구 정보 */}
+            {searchedFriend ? (
+              <div className="friend-info">
+                <img
+                  src={searchedFriend.imageUrl}
+                  alt="친구 프로필"
+                  className="searched-profile-image"
+                />
+                <div>{searchedFriend.nickname}</div>
+                <button onClick={handleAddFriend} className="add-button">
+                  친구 추가
+                </button>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
+            <input
+              type="text"
+              value={searchNickname}
+              onChange={(e) => setSearchNickname(e.target.value)}
+              placeholder="닉네임을 입력하세요"
+              className="search-input"
+            />
+            <button onClick={handleSearchFriend} className="search-button">
+              검색
+            </button>
+
+            {/* 팝업 닫기 버튼 */}
+            <button
+              onClick={() => setShowAddFriendPopup(false)}
+              className="close-button"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 하단 네비게이션 */}
       <div className="friends-bottom">
         <BottomNav nickname={nickname} imageUrl={imageUrl} />
       </div>
