@@ -55,6 +55,7 @@ const Friends = () => {
           친구 추가
         </button>
       </div>
+      
       <div className="friends-body">
         <ul className="friends-list">
           {friends.map((friend, index) => (

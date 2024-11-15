@@ -2,36 +2,56 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import BottomNav from "../components/BottomNav";
 import "../css/ChatList.css";
-import SampleImage from "../images/profile.png"; // 기본 프로필 이미지
+
+import SampleImage1 from "../images/person1.png";
+import SampleImage2 from "../images/person2.png";
+import SampleImage3 from "../images/person3.png";
+import SampleImage4 from "../images/person4.png";
+import SampleImage5 from "../images/person5.png";
 
 const ChatList = () => {
   const location = useLocation();
 
-  // nickname과 imageUrl 상태 관리
   const [nickname, setNickname] = useState("익명");
-  const [imageUrl, setImageUrl] = useState(SampleImage);
+  const [imageUrl, setImageUrl] = useState(SampleImage1);
 
-  // useEffect로 location.state가 변경될 때마다 상태 업데이트
   useEffect(() => {
     if (location.state) {
       setNickname(location.state.nickname || "익명");
-      setImageUrl(location.state.imageUrl || SampleImage);
+      setImageUrl(location.state.imageUrl || SampleImage1);
     }
   }, [location.state]);
 
-  // 채팅방 목록 상태 관리
   const [chatRooms, setChatRooms] = useState([
     {
-      nickname: "친구1",
-      imageUrl: SampleImage,
-      lastMessage: "안녕하세요, 오늘은 뭐해요?",
-      time: "오후 8:18",
+      nickname: "홍애리",
+      imageUrl: SampleImage5,
+      lastMessage: "내일 영화 보실래요??",
+      time: "오후 9:15",
     },
     {
-      nickname: "친구2",
-      imageUrl: SampleImage,
+      nickname: "지화자",
+      imageUrl: SampleImage4,
+      lastMessage: "공부는 하셨나요?",
+      time: "오후 8:00",
+    },
+    {
+      nickname: "이상민",
+      imageUrl: SampleImage3,
+      lastMessage: "오늘 과제는 다 하셨나요?",
+      time: "오후 7:30",
+    },
+    {
+      nickname: "나미녀",
+      imageUrl: SampleImage2,
       lastMessage: "식사는 하셨나요?",
-      time: "오후 9:48",
+      time: "오후 6:48",
+    },
+    {
+      nickname: "김민규",
+      imageUrl: SampleImage1,
+      lastMessage: "오늘 스터디 주제가 뭐죠?",
+      time: "오후 5:18",
     },
   ]);
 

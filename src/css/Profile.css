@@ -32,8 +32,9 @@
 
 .register-button {
   padding: 15px 35px;
-  background-color: #1f93ff;
-  color: white;
+  background-color: #d3d3d3; /* 밝은 회색 */
+  color: #3a3a3a;
+  font-weight: 500;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -41,5 +42,7 @@
 }
 
 .register-button:hover {
-  background-color: #1f93ff;
+  background-color: #6e6e6e;
+  color: #ccc;
+  font-weight: 500;
 }

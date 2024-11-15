@@ -17,20 +17,18 @@
 }
 
 .add-friend-button {
-  background-color: #d3d3d3;
-  color: #3a3a3a;
+  background-color: #007bff;
+  color: white;
   border: none;
-  font-weight: 500;
+
   margin-top: 25px;
   padding: 10px 16px;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .add-friend-button:hover {
-  background-color: #6e6e6e;
-  color: #ccc;
-  font-weight: 500;
+  background-color: #0056b3;
 }
 
 .friends-body {
@@ -63,7 +61,7 @@
 
 .friend-nickname {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* 친구 바텀 영역 */
@@ -76,17 +74,17 @@
 }
 
 /* 팝업 스타일 */
-/* .add-friend-popup {
+.add-friend-popup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 1000; /* 다른 요소들보다 위에 */
 }
 
 .popup-content {
@@ -96,10 +94,10 @@
   width: 80%;
   max-width: 400px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-} */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
 
-/* 검색창 스타일
+/* 검색창 스타일 */
 .search-input {
   width: 70%;
   padding: 10px;
@@ -149,8 +147,19 @@
 
 .add-button:hover {
   background-color: #007bff;
-} */
+}
 
+.close-button {
+  padding: 10px;
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-left: 20px;
+  width: 35%;
+}
 
-
-
+.close-button:hover {
+  background-color: #007bff;
+}

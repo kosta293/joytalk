@@ -41,30 +41,28 @@ const AddFriendPopup = ({ memberId, onClose, onFriendAdded }) => {
   return (
     <div className="popup">
       <div className="popup-content">
-        <button className="popup-close" onClick={onClose}>
-          X
-        </button>
-        <h2>친구 추가</h2>
+        <h3>친구 추가</h3>
+        {searchResult ? (
+          <div className="search-result">
+            <img src={searchResult.imageUrl || SampleImage} alt="친구 프로필" />
+            <span>{searchResult.nickname}</span>
+            <button onClick={handleAddFriend}>추가</button>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <input
           type="text"
           placeholder="친구 닉네임 검색"
           value={searchNickname}
           onChange={(e) => setSearchNickname(e.target.value)}
         />
-        <button onClick={handleSearch}>검색</button>
-
-        {searchResult ? (
-          <div className="search-result">
-            <img
-              src={searchResult.imageUrl || SampleImage} // 프로필 이미지가 없으면 샘플 이미지
-              alt="친구 프로필"
-            />
-            <span>{searchResult.nickname}</span>
-            <button onClick={handleAddFriend}>추가</button>
-          </div>
-        ) : (
-          <p>친구를 찾을 수 없습니다.</p> // 결과가 없으면 메시지 표시
-        )}
+        <div className="button-group">
+          <button onClick={handleSearch}>검색</button>
+          <button onClick={onClose} className="close-button">
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   );
